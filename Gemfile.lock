@@ -23,7 +23,6 @@ GEM
       multi_xml (~> 0.5)
       rack (~> 1.2)
     oj (1.4.7)
-    peach (0.5.1)
     rack (1.5.2)
     vkontakte_api (1.1)
       faraday (~> 0.8)
@@ -36,5 +35,4 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  peach
   vkontakte_api

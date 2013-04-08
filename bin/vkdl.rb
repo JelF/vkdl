@@ -25,10 +25,10 @@ def es(path)
 end
 
 def prp(str)
-  str.gsub(/[^0-9a-zA-Zа-яА-Я\s\-]/,'_')
+  str.gsub!(/[^0-9a-zA-Zа-яА-Я\s\-]/,'_')
 end
 
-ROOT=Pathname.new '/home/jelf/Музыка/lib'
+ROOT=Pathname.new '/run/media/jelf/000B-ACC0/music'
 es ROOT
 i=0
 sound.each do |snd|
