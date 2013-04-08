@@ -1,6 +1,8 @@
 # VKDL - simple script to download your audios from vk.com
 ## USAGE:
-Use vkdl-init if it is a fist run. ~/.config/vkdl.json file with default settings will apear. Beter way is your own application (see vk.com to information how make this), but default is fine too (except it could be banned). Don't forget to edit ROOT of your local library
+Use vkdl-init if it is a fist run. ~/.config/vkdl.json file with default settings will apear. 
+Beter way is your own application (see vk.com for information how make this), but default is fine too (except it could be banned). Don't forget to edit ROOT of your local library
+When you start vkdl, a window in browser will be opened. Copy access token from addres bar to application to continue working
 ## SPECIFIC
 There is not much naming rules (and also it supports only kirilic and latin in names) right now, so names of some files can look like this:
 `________________.mp3`
