@@ -6,5 +6,5 @@ There is not much naming rules (and also it supports only kirilic and latin in n
 `________________.mp3`
 You can edit regexp rule by yourself in this case. Maybe i will move it to configuration later.
 ##Thanks
-Greetings to Mark Abramov for helping me with ruby itself. I also love github communiti, becose there was a lot of ready libraries to work with vk.com, so only thing i need - to write a script
+Greetings to Mark Abramov for helping me with ruby itself. I also love github community, becose there was a lot of ready libraries to work with vk.com, so only thing i need - to write a script
 PS bevare of loosing all disk space - 10G may be not enought :)
