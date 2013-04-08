@@ -7,6 +7,6 @@ Gem::Specification.new do |s|
   s.description = ''
   s.authors = ['Alexander Smirnov aka JelF']
   s.email = 'overseer@blizzard.gg'
-  s.files = ['bin/vkdl','lib/modules/vkdl/main.rb']
+  s.files = ['bin/vkdl','lib/modules/main.rb','lib/cfg.rb','etc/default_cfg.json']
   s.homepage = 'http://blank.com'
 end

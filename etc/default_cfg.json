@@ -1,0 +1,7 @@
+{
+    "ROOT": "/tmp/lib",
+    "WGET": "/usr/bin/wget",
+    "APP_ID": "3551558",
+    "APP_SECRET": "mTxQUdtN8hXNPfEPEMWL",
+    "BROWSER": "/usr/bin/chromium"
+}

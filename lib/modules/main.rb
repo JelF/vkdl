@@ -1,12 +1,16 @@
 #!/usr/bin/env ruby 
 # encoding: utf-8
 
+$LOAD_PATH << './lib'
 require 'vkontakte_api'
 require 'pathname'
+require 'cfg.rb'
 
-#May breake formating
 module Main
-  ROOT=Pathname.new '/tmp/lib'
+  ROOT=Pathname.new $cfg['ROOT'] 
+  WGET = $cfg['WGET']
+  BROWSER = $cfg['BROWSER']
+
   def self.es(path)
     path.mkdir if !path.exist?
   end
@@ -17,16 +21,15 @@ module Main
     str
   end
 
-  WGET = '/usr/bin/wget'
   def self.start
     VkontakteApi.configure do |cfg|
-      cfg.app_id = '3551558'
-      cfg.app_secret = 'mTxQUdtN8hXNPfEPEMWL'
+      cfg.app_id = $cfg['APP_ID']
+      cfg.app_secret = $cfg['APP_SECRET']
       cfg.redirect_uri = 'http://api.vkontakte.ru/blank.html'
     end
 
     if !@token
-      system  'chromium -w "'+VkontakteApi.authorization_url(type: :client, scope: [:audio]) + '">/dev/null &'
+      system  "#{BROWSER} \"#{VkontakteApi.authorization_url(type: :client, scope: [:audio])}\" >/dev/null &"
       STDERR.print "enter token:\t"
       @token = STDIN.gets.split("\n").first 
       @vk = VkontakteApi::Client.new @token

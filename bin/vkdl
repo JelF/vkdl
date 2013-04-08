@@ -2,6 +2,14 @@
 $LOAD_PATH << '../lib'
 $LOAD_PATH << './lib'
 
-require 'modules/vkdl/main.rb' 
+require 'modules/main.rb' 
+require 'cfg.rb'
 
-Main::start
+p ARGV
+if(ARGV.length == 0) 
+  Main::start
+end
+
+if(ARGV[0]=='cfg')
+  exec "vim #{$CFG_FILE_NAME}"
+end
