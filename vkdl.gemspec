@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'vkdl'
-  s.version = '1.0.1'
+  s.version = '1.0.2'
   s.date = '2013-04-07'
   s.executables << 'vkdl'
   s.executables << 'vkdl-init'
@@ -8,6 +8,6 @@ Gem::Specification.new do |s|
   s.description = ''
   s.authors = ['Alexander Smirnov aka JelF']
   s.email = 'overseer@blizzard.gg'
-  s.files = ['bin/vkdl','bin/vkdl-init','lib/modules/main.rb','lib/cfg.rb','etc/default_cfg.json']
+  s.files = Dir['{bin,lib,etc}/**/*', 'README*', 'LICENSE*'] & `git ls-files -z`.split("\0")
   s.homepage = 'http://blank.com'
 end
