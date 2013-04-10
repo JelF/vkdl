@@ -1,7 +1,7 @@
 require 'json'
 require 'pathname'
 
-$CFG_FILE_PATH = Pathname.new '~/.config/vkdl.json'
+$CFG_FILE_PATH = Pathname.new '~/.config/vkdl/cfg.json'
 
 if not $CFG_FILE_PATH.exist?
   `cp etc/default_cfg.json #{$CFG_FILE_PATH.to_path}`

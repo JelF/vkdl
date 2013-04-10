@@ -3,5 +3,9 @@
     "WGET": "/usr/bin/wget",
     "APP_ID": "3551558",
     "APP_SECRET": "mTxQUdtN8hXNPfEPEMWL",
-    "BROWSER": "/usr/bin/chromium"
+    "BROWSER": "/usr/bin/chromium",
+    "NAMER": {
+        "PRIMARY_REGEXP": "[^0-9a-zA-Zа-яА-Я\\\s\\\-]",
+        "DICTIONARY_DB": "~/.config/vkdl/dictionary.db"
+    }
 }

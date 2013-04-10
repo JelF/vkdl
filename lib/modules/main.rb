@@ -5,20 +5,20 @@ $LOAD_PATH << './lib'
 require 'vkontakte_api'
 require 'pathname'
 require 'cfg.rb'
+require 'namer.rb'
 
 module Main
   ROOT=Pathname.new $cfg['ROOT'] 
   WGET = $cfg['WGET']
   BROWSER = $cfg['BROWSER']
+  @namer = Namer.new ROOT
 
   def self.es(path)
     path.mkdir if !path.exist?
   end
 
   def self.prp(str)
-    str.gsub!(/[^0-9a-zA-Zа-яА-Я\s\-]/,'_')
-    str.gsub!(/(\s)$/,'_')
-    str
+    @namer.lookup(str)
   end
 
   def self.start
