@@ -6,6 +6,7 @@ require 'vkontakte_api'
 require 'pathname'
 require 'cfg.rb'
 require 'namer.rb'
+require 'downloader.rb'
 
 module Main
   ROOT=Pathname.new $cfg['ROOT'] 
@@ -57,6 +58,7 @@ module Main
     end
   end
   def self.start
-    self.download self.get
+    @dler = Downloader.new(@namer, self.get)
+    @dler.start
   end
 end
