@@ -40,6 +40,6 @@ class Namer
   def lookup2 (audio)
     artist = lookup audio['artist']
     title  = lookup audio['title']
-    (artist,title)
+    [artist,title]
   end
 end
