@@ -21,7 +21,7 @@ module Main
     @namer.lookup(str)
   end
 
-  def self.start
+  def self.get
     VkontakteApi.configure do |cfg|
       cfg.app_id = $cfg['APP_ID']
       cfg.app_secret = $cfg['APP_SECRET']
@@ -35,10 +35,12 @@ module Main
       @vk = VkontakteApi::Client.new @token
     end
 
-    sound = @vk.audio.get
-    max = sound.length 
+    @vk.audio.get
+  end
+  def self.download(sound)
     es ROOT
     i=0
+    max = sound.length 
     sound.each do |snd|
       folder = ROOT+prp(snd['artist'])
       p folder
@@ -49,5 +51,8 @@ module Main
       i=i+1
       print "#{i}/#{max}\n"
     end
+  end
+  def self.start
+    self.download self.get
   end
 end

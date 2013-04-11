@@ -1,0 +1,6 @@
+#!/usr/bin/ruby
+# encode: utf-8
+$LOAD_PATH << './lib'
+require 'modules/tester'
+
+Tester::get_artist_list.uniq.each {|x| p x}
