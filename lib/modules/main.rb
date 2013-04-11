@@ -28,18 +28,24 @@ module Main
       cfg.redirect_uri = 'http://api.vkontakte.ru/blank.html'
     end
 
-    if !@token
-      system  "#{BROWSER} \"#{VkontakteApi.authorization_url(type: :client, scope: [:audio])}\" >/dev/null &"
+    system  "#{BROWSER} \"#{VkontakteApi.authorization_url(type: :client, scope: [:audio])}\" >/dev/null &" if !@token
+    while !@token
       STDERR.print "enter token:\t"
       @token = STDIN.gets.split("\n").first 
-      @vk = VkontakteApi::Client.new @token
+      begin 
+        @vk = VkontakteApi::Client.new @token
+        @sound = @vk.audio.get
+      rescue 
+        puts "Something goes wrong (probably bad token)"
+        puts "C+c to break"
+        @token=nil
+      end
     end
 
-    sound = @vk.audio.get
-    max = sound.length 
+    max = @sound.length 
     es ROOT
     i=0
-    sound.each do |snd|
+    @sound.each do |snd|
       folder = ROOT+prp(snd['artist'])
       p folder
       es folder
