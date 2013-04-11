@@ -28,7 +28,7 @@ module Main
       cfg.redirect_uri = 'http://api.vkontakte.ru/blank.html'
     end
 
-    system  "#{BROWSER} \"#{VkontakteApi.authorization_url(type: :client, scope: [:audio])}\" >/dev/null &" if !@token
+    system  %[#{BROWSER} "#{VkontakteApi.authorization_url(type: :client, scope: [:audio])}" >/dev/null &] if !@token
     while !@token
       STDERR.print "enter token:\t"
       @token = STDIN.gets.split("\n").first 
@@ -48,14 +48,12 @@ module Main
     i=0
     max = sound.length 
     sound.each do |snd|
-      folder = ROOT+prp(snd['artist'])
-      p folder
+      (folder,title) = @namer.lookup2 snd
+      folder = ROOT+folder
       es folder
-      file = folder+(prp(snd['title'])+'.mp3')
-      p file
-      `#{WGET} -c -O '#{file.to_path}' #{snd['url']}`
+      `#{WGET} -c -O "#{(folder+title).to_path}.mp3" #{snd.url}`
       i=i+1
-      print "#{i}/#{max}\n"
+      puts "Downlading #{title} into #{folder}, #{i}/#{max} (#{i/max*100}%)"
     end
   end
   def self.start
