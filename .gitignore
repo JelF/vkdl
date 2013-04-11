@@ -1,3 +1,4 @@
 gitignore/*
 *.swp
 *.fuse_hidden*
+log
