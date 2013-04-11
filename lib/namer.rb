@@ -36,4 +36,10 @@ class Namer
     str.gsub!(/(\s)$/,'')
     dbread str 
   end
+  
+  def lookup2 (audio)
+    artist = lookup audio['artist']
+    title  = lookup audio['title']
+    (artist,title)
+  end
 end
