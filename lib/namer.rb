@@ -42,4 +42,17 @@ class Namer
     title  = lookup audio['title']
     [artist,title]
   end
+
+  #THERE IS A LOT OF CONSTANTS
+  HASHCUP = 2**16 #raising removes collisions (we need collisions!)
+  LENCUP  = 4    #don't even care if rhere is more then 8 words
+  SHIFT   = 2**(64/LENCUP)
+  def self.superhash str 
+    words = str.split /\s/ #Configurable regexp
+    baselen = 64 - (64/LENCUP)*words.length 
+    words.map!{|s| s.hash%HASHCUP} 
+    sh = words.inject{|sh,wh| sh*SHIFT+wh}
+    sh = sh * 2**baselen
+    sh.round
+  end
 end
