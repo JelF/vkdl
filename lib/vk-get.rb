@@ -6,6 +6,7 @@ require 'vkontakte_api'
 require 'pathname'
 require 'cfg.rb'
 require 'namer.rb'
+require 'downloader.rb'
 
 VkontakteApi.configure do |cfg|
   cfg.app_id = $cfg['APP_ID']
@@ -50,6 +51,7 @@ class  Main
     end
   end
   def self.start
-    self.download self.get
+    @dler = Downloader.new(@namer, self.get)
+    @dler.start
   end
 end

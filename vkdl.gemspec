@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name = 'vkdl'
   s.version = '1.0.2'
-  s.date = '2013-04-07'
+  s.date = '2013-04-11'
   s.executables << 'vkdl'
   s.executables << 'vkdl-init'
   s.summary = 'private'
