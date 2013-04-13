@@ -14,15 +14,14 @@ VkontakteApi.configure do |cfg|
   cfg.redirect_uri = 'http://api.vkontakte.ru/blank.html'
 end
 
-class  Main
+class  Vk_get
   def initialize
     @ROOT=Pathname.new $cfg['ROOT'] 
-    @WGET = $cfg['WGET']
     @BROWSER = $cfg['BROWSER']
-    @namer = Namer.new ROOT
-
+    @namer = Namer.new @ROOT
+  end
   def get
-    system  %[#{BROWSER} "#{VkontakteApi.authorization_url(type: :client, scope: [:audio])}" >/dev/null &] if !@token
+    system  %[#{@BROWSER} "#{VkontakteApi.authorization_url(type: :client, scope: [:audio])}" >/dev/null &] if !@token
     while !@token
       STDERR.print "enter token:\t"
       @token = STDIN.gets.split("\n").first 
@@ -36,22 +35,5 @@ class  Main
       end
     end
     @sound
-  end
-  def self.download(sound)
-    es ROOT
-    i=0
-    max = sound.length 
-    sound.each do |snd|
-      (folder,title) = @namer.lookup2 snd
-      folder = ROOT+folder
-      es folder
-      `#{WGET} -c -O "#{(folder+title).to_path}.mp3" #{snd.url}`
-      i=i+1
-      puts "Downlading #{title} into #{folder}, #{i}/#{max} (#{i/max*100}%)"
-    end
-  end
-  def self.start
-    @dler = Downloader.new(@namer, self.get)
-    @dler.start
   end
 end
