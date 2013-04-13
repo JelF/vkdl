@@ -4,6 +4,10 @@ $LOAD_PATH << './lib'
 require 'modules/main.rb' 
 require 'cfg.rb'
 
+##DEBUG-SPECIFIC
+Thread.abort_on_exception = true
+##END
+
 p ARGV
 if(ARGV.length == 0) 
   Main::start
