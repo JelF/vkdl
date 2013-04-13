@@ -29,6 +29,8 @@ class Downloader
 
     @ROOT = Pathname.new $cfg['ROOT']
     @WGET = $cfg['WGET']
+
+    @ROOT.mkpath
   end
   def new_namer_thread(audio)
     thread = Thread.new do
