@@ -22,24 +22,32 @@ class Namer
     @db = SQLite3::Database.new(@db_file_path.to_s)
   end
 
-  def dbread(str)
-    res=@db.execute %q{SELECT dictionary.value FROM dictionary WHERE dictionary.key=?},str
+  def get_sth(str,queue)
+    res=@db.execute queue,str
     if res.empty?
       str
     else res.first.first
     end
   end
-   
-
-  def lookup (str)
+  def get_artist(str)
+    get_sth str, %q{SELECT artists.name
+                    FROM artists, artist_dictionary
+                    WHERE artists.id = artist_dictionary.artist AND artist_dictionary.key = ?}
+  end
+  def get_title(str)
+    get_sth str, %q{SELECT name 
+                    FROM name_dictionary 
+                    WHERE name_dictionary.key = ?}
+  end
+  def prepare_string (str)
     str.gsub!(@primary_regexp,'_')
     str.gsub!(/(\s)$/,'')
-    dbread str 
+    str
   end
   
   def lookup2 (audio)
-    artist = lookup audio['artist']
-    title  = lookup audio['title']
+    artist = get_artist prepare_string audio['artist']
+    title  = get_title  prepare_string audio['title']
     [artist,title]
   end
 
