@@ -32,7 +32,8 @@ class Namer
   def get_artist(str)
     get_sth str, %q{SELECT artists.name
                     FROM artists, artist_dictionary
-                    WHERE artists.id = artist_dictionary.artist AND artist_dictionary.key = ?}
+                    WHERE artists.hash = artist_dictionary.artist 
+                      AND artist_dictionary.key = ?}
   end
   def get_title(str)
     get_sth str, %q{SELECT name 
